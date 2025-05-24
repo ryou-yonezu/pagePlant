@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+    background-color: #0a0f1f; /* より深いネイビー */
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+.hero-bg-pageplant {
+    background: radial-gradient(ellipse at bottom, #102d4a 0%, #0a0f1f 100%); /* PagePlant用に少し調整 */
+    position: relative;
+    overflow: hidden;
+}
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* ★ ヘッダー専用の glassmorphism スタイル */
+.header-glassmorphism {
+  background: rgba(255, 255, 255, 0.2);  /* ロゴが見やすくなるように白みを増やす */
+  /* 必要であれば、他の色味も検討: 例 rgba(220, 225, 235, 0.15) など */
+  backdrop-filter: blur(10px); /* ぼかし効果は共通で良いでしょう */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18); /* ボーダーも少し濃くする */
+  /* 既存の .glassmorphism と共通のプロパティはここに再度記述するか、
+     Headerコンポーネントで両方のクラスを適用する（下記参照） */
+}
+
+.cta-button-v2 {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* ブルーのグロー */
+}
+.cta-button-v2:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+}
+.feature-card-v2 {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.feature-card-v2:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.section-title {
+    background: -webkit-linear-gradient(45deg, #60a5fa, #3b82f6); /* ブルー系 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.section-title-green { /* 強調したい箇所にグリーン系も */
+    background: -webkit-linear-gradient(45deg, #34d399, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.scroll-smooth { scroll-behavior: smooth; }
+
+/* カスタムアニメーションクラス (GSAPで直接スタイルを指定するため不要になる場合が多い) */
+/* .gsap-fade-in { opacity: 0; } */
+/* .gsap-fade-in-up { opacity: 0; transform: translateY(50px); } */
+/* .gsap-scale-in { opacity: 0; transform: scale(0.8); } */
+
+/* ヒーローセクションのパーティクル */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.content-above-particles {
+    position: relative;
+    z-index: 1;
+}
+
+/* 料金表スタイル */
+.pricing-table th, .pricing-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+.pricing-table th {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+.highlight-price {
+    color: #34d399; /* エメラルドグリーン */
+    font-weight: bold;
+}
+ /* サービスフロー */
+.flow-line {
+    position: absolute;
+    left: 50%;
+    top: 1.5rem; /* アイコンの半分程度 */
+    bottom: 1.5rem;
+    width: 3px;
+    background-color: rgba(59, 130, 246, 0.3);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+.flow-item .flow-icon {
+    background-color: #1e3a8a; /* Tailwind blue-800 */
+    color: #93c5fd; /* Tailwind blue-300 */
+    border: 4px solid #0a0f1f; /* body background */
+    z-index: 1;
+}
+
+/* FAQのアイコン回転用 */
+.faq-question i.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.keen-slider__slide:focus {
+  outline: none; /* フォーカス時のアウトラインを消す (アクセシビリティに注意) */
+}
