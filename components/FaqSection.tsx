@@ -26,7 +26,8 @@ const faqData = [
 const FaqSection = () => {
   // GSAP animations will be applied by useGsapAnimations hook via className
   return (
-    <section id="faq" className="py-16 md:py-24 bg-gray-950">
+    // ★ bg-white
+    <section id="faq" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-6 max-w-3xl">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-bold section-title inline-block pb-2 gsap-fade-in-up">よくあるご質問</h2>

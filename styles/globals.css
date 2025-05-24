@@ -1,70 +1,73 @@
+/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
     font-family: 'Noto Sans JP', 'Inter', sans-serif;
-    background-color: #0a0f1f; /* より深いネイビー */
-    color: #e0e0e0;
+    background-color: #f8f9fa; /* ★ ライトモード: 明るいグレー */
+    color: #212529;     /* ★ ライトモード: 濃いグレー (ほぼ黒) */
     overflow-x: hidden;
 }
 .hero-bg-pageplant {
-    background: radial-gradient(ellipse at bottom, #102d4a 0%, #0a0f1f 100%); /* PagePlant用に少し調整 */
+    /* background: linear-gradient(135deg, #e0f2fe 0%, #cce7ff 100%); /* 明るいブルー系 */
+    background: linear-gradient(135deg, #e6fffa 0%, #c3faef 100%); /* ★ 明るいグリーン系グラデーション */
     position: relative;
     overflow: hidden;
 }
+
+/* Glassmorphism (ライトモード版) - ヘッダー以外でも使われる可能性を考慮 */
 .glassmorphism {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.7); /* ★ 白の不透明度を上げる */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ヘッダー専用の glassmorphism スタイル */
+.header-glassmorphism {
+    background: rgba(255, 255, 255, 0.85); /* ★ ヘッダーはより不透明度を高く */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-/* ★ ヘッダー専用の glassmorphism スタイル */
-.header-glassmorphism {
-  background: rgba(255, 255, 255, 0.2);  /* ロゴが見やすくなるように白みを増やす */
-  /* 必要であれば、他の色味も検討: 例 rgba(220, 225, 235, 0.15) など */
-  backdrop-filter: blur(10px); /* ぼかし効果は共通で良いでしょう */
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18); /* ボーダーも少し濃くする */
-  /* 既存の .glassmorphism と共通のプロパティはここに再度記述するか、
-     Headerコンポーネントで両方のクラスを適用する（下記参照） */
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */ /* ヘッダーは下にだけボーダー */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .cta-button-v2 {
     transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* ブルーのグロー */
+    box-shadow: 0 4px Px rgba(59, 130, 246, 0.25); /* グローを少し抑える */
 }
 .cta-button-v2:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
 }
+
 .feature-card-v2 {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #e0e0e0; /* ★ 明るいボーダー */
+    background-color: #ffffff; /* ★ カード背景を白に */
 }
 .feature-card-v2:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: translateY(-8px); /* 少し控えめに */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08); /* ソフトなシャドウ */
 }
+
 .section-title {
-    background: -webkit-linear-gradient(45deg, #60a5fa, #3b82f6); /* ブルー系 */
+    background: -webkit-linear-gradient(45deg, #2563eb, #1d4ed8); /* ★ やや濃いめのブルー */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.section-title-green { /* 強調したい箇所にグリーン系も */
-    background: -webkit-linear-gradient(45deg, #34d399, #10b981);
+.section-title-green {
+    background: -webkit-linear-gradient(45deg, #059669, #047857); /* ★ やや濃いめのグリーン */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .scroll-smooth { scroll-behavior: smooth; }
 
-/* カスタムアニメーションクラス (GSAPで直接スタイルを指定するため不要になる場合が多い) */
-/* .gsap-fade-in { opacity: 0; } */
-/* .gsap-fade-in-up { opacity: 0; transform: translateY(50px); } */
-/* .gsap-scale-in { opacity: 0; transform: scale(0.8); } */
-
-/* ヒーローセクションのパーティクル */
-#particles-js {
+#particles-js { /* Hero内のパーティクル用、色はHero.tsxで設定 */
     position: absolute;
     width: 100%;
     height: 100%;
@@ -77,42 +80,38 @@ body {
     z-index: 1;
 }
 
-/* 料金表スタイル */
 .pricing-table th, .pricing-table td {
     padding: 0.75rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid #dee2e6;
     text-align: left;
+    color: #495057; /* ★ 明るいテーブルのテキスト色 */
 }
 .pricing-table th {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: #f1f3f5; /* ★ 明るいテーブルヘッダー背景 */
+    color: #212529;
 }
 .highlight-price {
-    color: #34d399; /* エメラルドグリーン */
+    color: #0f766e; /* ★ グリーン系アクセント (少し濃く) */
     font-weight: bold;
 }
- /* サービスフロー */
+
 .flow-line {
     position: absolute;
     left: 50%;
-    top: 1.5rem; /* アイコンの半分程度 */
+    top: 1.5rem;
     bottom: 1.5rem;
     width: 3px;
-    background-color: rgba(59, 130, 246, 0.3);
+    background-color: rgba(59, 130, 246, 0.4); /* ★ ブルーの透明度調整 */
     transform: translateX(-50%);
     z-index: 0;
 }
 .flow-item .flow-icon {
-    background-color: #1e3a8a; /* Tailwind blue-800 */
-    color: #93c5fd; /* Tailwind blue-300 */
-    border: 4px solid #0a0f1f; /* body background */
+    background-color: #3b82f6;   /* ★ ブルー */
+    color: #ffffff;
+    border: 4px solid #f8f9fa; /* ★ bodyの背景色に合わせる */
     z-index: 1;
 }
 
-/* FAQのアイコン回転用 */
 .faq-question i.rotate-180 {
     transform: rotate(180deg);
-}
-
-.keen-slider__slide:focus {
-  outline: none; /* フォーカス時のアウトラインを消す (アクセシビリティに注意) */
 }

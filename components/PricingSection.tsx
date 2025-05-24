@@ -35,54 +35,51 @@ const PlanCard: React.FC<PricingTierProps> = ({
   // isYearlyPlan を受け取る
 }) => {
   return (
-    <div
-      className={`
-        bg-slate-800 rounded-xl shadow-2xl p-6 md:p-8 flex flex-col relative h-full
-        transition-all duration-300 ease-in-out transform hover:scale-105
-        ${isRecommended ? `border-2 ${highlightColor}` : 'border border-slate-700'}
-      `}
-    >
-      {isRecommended && (
-        <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-sm font-semibold text-white ${isRecommended ? 'bg-green-500' : 'bg-blue-500'} shadow-lg flex items-center`}>
-          <FaStar className="mr-2" /> おすすめ
-        </div>
-      )}
-
-      <h3 className="text-2xl md:text-3xl font-bold text-center mb-1">{name}</h3>
-
-      {/* トグル表示エリアは削除、または高さを0にするかスペーサーとして使う場合は調整 */}
-      <div className="my-4 h-[10px] flex items-center justify-center">
-        {/* トグル削除。高さを揃えるためのダミースペースも不要になることが多いが、
-            デザインによって微調整のために残す場合もある。今回は一旦最小限の高さに。 */}
-      </div>
-
-
-      <div className="text-center my-4">
-        <span className={`text-4xl md:text-5xl font-extrabold ${isRecommended ? 'text-green-400' : 'text-blue-400'}`}>
-          {displayPrice}
-        </span>
-        <span className="text-gray-400 ml-1">{pricePeriodText}</span>
-        {secondaryPriceInfo && (
-          <p className="text-sm text-gray-500 mt-1">{secondaryPriceInfo}</p>
+      <div
+        className={`
+          bg-white rounded-xl shadow-xl p-6 md:p-8 flex flex-col relative h-full /* ★ bg-white, shadow-xl */
+          transition-all duration-300 ease-in-out transform hover:scale-105
+          ${isRecommended ? `border-2 ${highlightColor}` : 'border border-gray-200'} /* ★ 通常ボーダー変更 */
+        `}
+      >
+        {isRecommended && (
+          <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-sm font-semibold text-white ${isRecommended ? 'bg-green-500' : 'bg-blue-500'} shadow-lg flex items-center`}>
+            <FaStar className="mr-2" /> おすすめ
+          </div>
         )}
-      </div>
-
-      <div className="mb-6 text-center">
-        <p className="text-lg font-semibold">初期費用:
-          <span className={`ml-2 ${initialFee === "0円" ? "text-green-400" : "text-yellow-400"}`}>
-            {initialFee}
+        {/* ★ text-gray-800 */}
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-1 text-gray-800">{name}</h3>
+        <div className="my-4 h-[10px] flex items-center justify-center"></div>
+  
+        <div className="text-center my-4">
+          <span className={`text-4xl md:text-5xl font-extrabold ${isRecommended ? 'text-green-500' : 'text-blue-600'}`}> {/* アクセントカラー調整 */}
+            {displayPrice}
           </span>
-        </p>
-      </div>
-
-      <ul className="space-y-3 mb-8 flex-grow">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <FaCheckCircle className={`w-5 h-5 mt-1 mr-3 ${feature.included ? 'text-green-400' : 'text-slate-600'}`} />
-            <span className={feature.included ? 'text-gray-300' : 'text-gray-500 line-through'}>{feature.text}</span>
-          </li>
-        ))}
-      </ul>
+          {/* ★ text-gray-500 */}
+          <span className="text-gray-500 ml-1">{pricePeriodText}</span>
+          {secondaryPriceInfo && (
+            <p className="text-sm text-gray-500 mt-1">{secondaryPriceInfo}</p>
+          )}
+        </div>
+  
+        <div className="mb-6 text-center">
+          {/* ★ text-gray-800 */}
+          <p className="text-lg font-semibold text-gray-800">初期費用:
+            <span className={`ml-2 ${initialFee === "0円" ? "text-green-500" : "text-yellow-500"}`}>
+              {initialFee}
+            </span>
+          </p>
+        </div>
+  
+        <ul className="space-y-3 mb-8 flex-grow">
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-start">
+              <FaCheckCircle className={`w-5 h-5 mt-1 mr-3 ${feature.included ? 'text-green-500' : 'text-gray-300'}`} /> {/* 未選択の色調整 */}
+              {/* ★ text-gray-700, text-gray-400 */}
+              <span className={feature.included ? 'text-gray-700' : 'text-gray-400 line-through'}>{feature.text}</span>
+            </li>
+          ))}
+        </ul>
 
       <button
         onClick={onSelectPlan}
@@ -158,19 +155,19 @@ const PricingSection = () => {
         contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   return (
-    <section id="pricing" className="py-16 md:py-24 bg-gray-900">
+    // ★ bg-gray-50
+    <section id="pricing" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-20">
           <h2 className="text-4xl md:text-5xl font-bold section-title inline-block pb-2 gsap-fade-in-up">
             最適なプランを選びましょう
           </h2>
-          <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto gsap-fade-in-up" data-gsap-delay="0.1">
+          {/* ★ text-gray-600 */}
+          <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto gsap-fade-in-up" data-gsap-delay="0.1">
             お客様のニーズに合わせた、透明性の高い料金プランをご用意しています。
           </p>
         </div>
-
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto items-stretch">
           {plansData.map((plan, index) => (
             <div key={index} className="gsap-fade-in-up" data-gsap-delay={0.2 + index * 0.1}>
@@ -178,11 +175,11 @@ const PricingSection = () => {
             </div>
           ))}
         </div>
-
+        {/* ★ text-gray-500, text-gray-700 */}
         <div className="mt-16 text-center text-sm text-gray-500 max-w-3xl mx-auto gsap-fade-in-up" data-gsap-delay="0.5">
-          <h4 className="text-lg font-semibold text-gray-300 mb-3">共通の注意事項:</h4>
+          <h4 className="text-lg font-semibold text-gray-700 mb-3">共通の注意事項:</h4>
           <ul className="list-disc list-inside space-y-1 text-left mx-auto max-w-xl">
-            <li>表示価格は特に記載がない限り税別です。</li>
+          <li>表示価格は特に記載がない限り税別です。</li>
             <li>初回お支払いは、初期費用（該当する場合）＋初月または年額料金となります（公開月から発生）。</li>
             <li>最低契約期間は6ヶ月です。</li>
             <li>お支払い方法はクレジットカード（Stripe経由）による自動引き落としです。毎月25日処理。</li>
@@ -194,5 +191,4 @@ const PricingSection = () => {
     </section>
   );
 };
-
 export default PricingSection;

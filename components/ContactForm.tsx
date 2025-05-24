@@ -31,31 +31,25 @@ const ContactForm = () => {
   return (
     <form id="contact-form" onSubmit={handleSubmit}>
       <div className="mb-5">
-        <label htmlFor="name" className="block text-left mb-1.5 text-sm font-medium text-gray-300">お名前 <span className="text-red-400">*</span></label>
-        <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required className="w-full p-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:border-green-500 focus:ring-green-500 outline-none text-white placeholder-gray-500" placeholder="例：山田 太郎" />
+        {/* ★ text-gray-700 */}
+        <label htmlFor="name" className="block text-left mb-1.5 text-sm font-medium text-gray-700">お名前 <span className="text-red-500">*</span></label> {/* 必須マークの色も調整 */}
+        {/* ★ bg-white border-gray-300 focus:border-green-500 focus:ring-green-500 text-gray-900 placeholder-gray-400 */}
+        <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required className="w-full p-3 rounded-lg bg-white border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none text-gray-900 placeholder-gray-400" placeholder="例：山田 太郎" />
       </div>
       <div className="mb-5">
-        <label htmlFor="email" className="block text-left mb-1.5 text-sm font-medium text-gray-300">メールアドレス <span className="text-red-400">*</span></label>
-        <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full p-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:border-green-500 focus:ring-green-500 outline-none text-white placeholder-gray-500" placeholder="例：info@example.com" />
+        <label htmlFor="email" className="block text-left mb-1.5 text-sm font-medium text-gray-700">メールアドレス <span className="text-red-500">*</span></label>
+        <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full p-3 rounded-lg bg-white border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none text-gray-900 placeholder-gray-400" placeholder="例：info@example.com" />
       </div>
       <div className="mb-6">
-        <label htmlFor="message" className="block text-left mb-1.5 text-sm font-medium text-gray-300">ご相談内容 (任意)</label>
-        <textarea id="message" name="message" rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="w-full p-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:border-green-500 focus:ring-green-500 outline-none text-white placeholder-gray-500" placeholder="ホームページで実現したいこと、ご質問、ご希望の相談日時など"></textarea>
+        <label htmlFor="message" className="block text-left mb-1.5 text-sm font-medium text-gray-700">ご相談内容 (任意)</label>
+        <textarea id="message" name="message" rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="w-full p-3 rounded-lg bg-white border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none text-gray-900 placeholder-gray-400" placeholder="ホームページで実現したいこと、ご質問、ご希望の相談日時など"></textarea>
       </div>
+      {/* CTAボタンは基本維持 */}
       <button type="submit" className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold text-lg py-3.5 rounded-lg cta-button-v2">
         <i className="fas fa-paper-plane mr-2"></i>無料で相談してみる
       </button>
-      {formStatus && (
-        <div id="form-message" className={`mt-4 text-center text-sm ${
-          statusType === 'success' ? 'text-green-400' : 
-          statusType === 'error' ? 'text-red-400' : 
-          statusType === 'pending' ? 'text-yellow-400' : ''
-        }`}>
-          {formStatus}
-        </div>
-      )}
+      {/* formStatus のテキスト色は状況に応じてなので、ダーク/ライト共通で良い場合が多い */}
     </form>
   );
 };
-
 export default ContactForm;

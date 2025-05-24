@@ -74,27 +74,24 @@ const TemplateCarousel: React.FC = () => {
   );
 
   return (
-    <div className="py-16 md:py-20 bg-gray-950"> {/* 上下のpaddingを少し調整 */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8"> {/* 左右のpaddingも考慮 */}
+    // ★ bg-gray-50 (非常に薄いグレー)
+    <div className="py-16 md:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold section-title inline-block pb-2 gsap-fade-in-up">
             豊富なテンプレートデザイン
           </h3>
-          <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-2xl mx-auto gsap-fade-in-up" data-gsap-delay="0.1">
-            100種類以上のテンプレートから好みにあったデザインを選択できます {/* 文言変更 */}
+          {/* ★ text-gray-600 */}
+          <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto gsap-fade-in-up" data-gsap-delay="0.1">
+            100種類以上のテンプレートから好みにあったデザインを選択できます
           </p>
         </div>
       </div>
-
-      {/* keen-sliderコンテナ: 左右に少しはみ出すように見せるため、コンテナ幅より若干広くする */}
-      {/* 必要であれば、親要素に overflow-x-hidden を設定 */}
-      <div className="w-full overflow-hidden"> {/* カルーセルの親でoverflowを管理 */}
-        <div ref={sliderRef} className="keen-slider py-4"> {/* カルーセル自体に少しpadding-top/bottom */}
+      <div className="w-full overflow-hidden">
+        <div ref={sliderRef} className="keen-slider py-4">
           {templates.map((src, index) => (
-            <div key={index} className="keen-slider__slide group px-2"> {/* スライド間の余白をspacingで制御するので、pxは最小限に */}
-              {/* アスペクト比と高さを調整してカルーセルを大きく見せる */}
-              <div className="aspect-[16/9] md:aspect-[16/8] lg:aspect-[16/7] rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 ease-out group-hover:scale-102 group-hover:shadow-green-500/30">
-                {/* 画像の品質も重要 */}
+            <div key={index} className="keen-slider__slide group px-2">
+              <div className="aspect-[16/9] md:aspect-[16/8] lg:aspect-[16/7] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transform transition-all duration-500 ease-out group-hover:scale-102 group-hover:shadow-green-600/20"> {/* シャドウの色調整 */}
                 <Image
                   src={src}
                   alt={`テンプレートデザイン ${index + 1}`}
@@ -102,31 +99,27 @@ const TemplateCarousel: React.FC = () => {
                   objectFit="cover"
                   className="transition-transform duration-500 group-hover:scale-105"
                   priority={index < 3}
-                  quality={85} // 画像品質を少し上げる (ファイルサイズとのバランス)
+                  quality={85}
                 />
-                {/* 画像上のデザイン番号表示を削除 */}
-                {/* <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition-opacity duration-300"></div> */}
               </div>
             </div>
           ))}
         </div>
       </div>
-
-
-      {/* ナビゲーションボタン (オプション) */}
       {instanceRef.current && (
-        <div className="flex justify-center mt-10 space-x-4">
+         <div className="flex justify-center mt-10 space-x-4">
+          {/* ボタンの色はアクセントカラーなので基本維持、フォーカスリングの色を調整 */}
           <button
             onClick={(e) => { e.stopPropagation(); instanceRef.current?.prev(); }}
             aria-label="前のスライドへ"
-            className="p-3 rounded-full bg-green-500/80 text-white hover:bg-green-500 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
+            className="p-3 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-60"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); instanceRef.current?.next(); }}
             aria-label="次のスライドへ"
-            className="p-3 rounded-full bg-green-500/80 text-white hover:bg-green-500 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
+            className="p-3 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-60"
           >
              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
@@ -135,5 +128,4 @@ const TemplateCarousel: React.FC = () => {
     </div>
   );
 };
-
 export default TemplateCarousel;

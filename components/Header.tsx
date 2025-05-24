@@ -3,9 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 const Header = () => {
-  // ... (state と関数の定義は変更なし) ...
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -19,8 +17,7 @@ const Header = () => {
   ];
 
   return (
-    // ★ className を変更
-    <header className="fixed top-0 left-0 right-0 z-50 header-glassmorphism"> {/* glassmorphism を header-glassmorphism に変更 */}
+    <header className="fixed top-0 left-0 right-0 z-50 header-glassmorphism">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <a href="#" className="flex items-center">
           <Image
@@ -31,22 +28,24 @@ const Header = () => {
             priority
           />
         </a>
-        {/* ... (ナビゲーションとモバイルメニューボタン) ... */}
         <nav className="hidden md:flex space-x-5 items-center">
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} className="hover:text-green-400 transition duration-300 font-medium">{link.label}</a>
+            // ★ text-gray-700 hover:text-green-600
+            <a key={link.href} href={link.href} className="text-gray-700 hover:text-green-600 transition duration-300 font-medium">{link.label}</a>
           ))}
+          {/* CTAボタンのスタイルは .cta-button-v2 で制御される部分もあるが、基本色はTailwindで */}
           <a href="#contact" className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2.5 rounded-lg cta-button-v2 text-sm">無料相談・お問合せ</a>
         </nav>
-        <button id="mobile-menu-button" className="md:hidden text-2xl text-gray-200 hover:text-green-400" onClick={toggleMobileMenu} aria-label="モバイルメニューを開閉">
+        {/* ★ text-gray-700 hover:text-green-600 */}
+        <button id="mobile-menu-button" className="md:hidden text-2xl text-gray-700 hover:text-green-600" onClick={toggleMobileMenu} aria-label="モバイルメニューを開閉">
           <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
         </button>
       </div>
       {isMobileMenuOpen && (
-        // モバイルメニューの背景もヘッダー専用スタイルを適用するか、元のglassmorphismのままにするか選択
-        <div id="mobile-menu" className="md:hidden header-glassmorphism"> {/* こちらも変更 */}
+        <div id="mobile-menu" className="md:hidden header-glassmorphism">
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} onClick={closeMobileMenu} className="block px-6 py-3 hover:bg-gray-700/50 transition duration-300">{link.label}</a>
+            // ★ text-gray-700 hover:bg-gray-100
+            <a key={link.href} href={link.href} onClick={closeMobileMenu} className="block px-6 py-3 text-gray-700 hover:bg-gray-100 transition duration-300">{link.label}</a>
           ))}
           <a href="#contact" onClick={closeMobileMenu} className="block px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold text-center">無料相談・お問合せ</a>
         </div>
@@ -54,5 +53,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;

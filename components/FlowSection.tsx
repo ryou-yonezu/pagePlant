@@ -44,26 +44,32 @@ const FlowSection = () => {
     ];
   
     return (
-      <section id="flow" className="py-16 md:py-24 bg-gray-950">
+      // ★ bg-white
+      <section id="flow" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-5xl font-bold section-title inline-block pb-2 gsap-fade-in-up">ご利用の流れ</h2>
-            <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto gsap-fade-in-up" data-gsap-delay="0.1">簡単ステップで、あなたのホームページが完成します。</p>
+            {/* ★ text-gray-600 */}
+            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto gsap-fade-in-up" data-gsap-delay="0.1">簡単ステップで、あなたのホームページが完成します。</p>
           </div>
           <div className="relative max-w-xl mx-auto">
-            <div className="flow-line hidden md:block"></div>
+            <div className="flow-line hidden md:block"></div> {/* flow-line の色は globals.css で調整済み */}
             {flowSteps.map((item) => (
               <div
                 key={item.step}
                 className={`flow-item md:flex items-center mb-8 md:mb-12 gsap-fade-in-up ${item.alignRight ? 'md:flex-row-reverse' : ''}`}
                 data-gsap-delay={item.delay}
               >
+                {/* flow-icon の色は globals.css で調整済み */}
                 <div className={`flow-icon w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto md:mx-0 mb-3 md:mb-0 ${item.alignRight ? 'md:ml-6' : 'md:mr-6'}`}>
                   {item.step}
                 </div>
-                <div className={`bg-slate-800 glassmorphism p-6 rounded-lg shadow-xl flex-1 ${item.alignRight ? 'text-center md:text-right' : 'text-center md:text-left'}`}>
-                  <h3 className={`text-xl font-semibold ${item.color} mb-1`}>{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.description}</p>
+                {/* ★ bg-white border border-gray-200 shadow-lg */}
+                <div className={`bg-white border border-gray-200 shadow-lg p-6 rounded-lg flex-1 ${item.alignRight ? 'text-center md:text-right' : 'text-center md:text-left'}`}>
+                  {/* ★ タイトルのアクセントカラーは維持、または少し濃くする */}
+                  <h3 className={`text-xl font-semibold ${item.color.replace('-300', '-600')} mb-1`}>{item.title}</h3> {/* 例: text-blue-300 -> text-blue-600 */}
+                  {/* ★ text-gray-600 */}
+                  <p className="text-gray-600 text-sm">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -72,5 +78,4 @@ const FlowSection = () => {
       </section>
     );
   };
-  
   export default FlowSection;
